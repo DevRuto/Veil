@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.API", "Veil.API\Veil.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.UnitTests", "Veil.UnitTests\Veil.UnitTests.csproj", "{DCE3A2AA-D3E3-4E23-ABD1-F9C3F5C78C58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.Domain", "Veil.Domain\Veil.Domain.csproj", "{E7B10501-6979-4774-A35C-88901B30E52C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.Application", "Veil.Application\Veil.Application.csproj", "{4F3FDDC2-6AF6-45ED-8E4C-BAF3803823CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.Infrastructure", "Veil.Infrastructure\Veil.Infrastructure.csproj", "{6801F928-4776-4E5A-9290-849B6D1E8959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veil.Core", "Veil.Core\Veil.Core.csproj", "{B004A7B5-C852-4A69-B847-26E9F1E4CEB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +30,6 @@ Global
 		{DCE3A2AA-D3E3-4E23-ABD1-F9C3F5C78C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE3A2AA-D3E3-4E23-ABD1-F9C3F5C78C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE3A2AA-D3E3-4E23-ABD1-F9C3F5C78C58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7B10501-6979-4774-A35C-88901B30E52C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7B10501-6979-4774-A35C-88901B30E52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7B10501-6979-4774-A35C-88901B30E52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7B10501-6979-4774-A35C-88901B30E52C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F3FDDC2-6AF6-45ED-8E4C-BAF3803823CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F3FDDC2-6AF6-45ED-8E4C-BAF3803823CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3FDDC2-6AF6-45ED-8E4C-BAF3803823CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,5 +38,9 @@ Global
 		{6801F928-4776-4E5A-9290-849B6D1E8959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6801F928-4776-4E5A-9290-849B6D1E8959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6801F928-4776-4E5A-9290-849B6D1E8959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B004A7B5-C852-4A69-B847-26E9F1E4CEB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B004A7B5-C852-4A69-B847-26E9F1E4CEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B004A7B5-C852-4A69-B847-26E9F1E4CEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B004A7B5-C852-4A69-B847-26E9F1E4CEB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

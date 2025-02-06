@@ -1,4 +1,4 @@
-﻿namespace Veil.Domain;
+﻿namespace Veil.Core;
 
 public class Class1
 {

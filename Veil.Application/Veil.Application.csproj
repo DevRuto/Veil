@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Veil.Domain\Veil.Domain.csproj" />
+    <ProjectReference Include="..\Veil.Core\Veil.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
