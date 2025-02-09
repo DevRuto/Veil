@@ -1,0 +1,3 @@
+{
+    "[csharp]": { "editor.codeActionsOnSave": [ "source.organizeImports" ] }
+}
