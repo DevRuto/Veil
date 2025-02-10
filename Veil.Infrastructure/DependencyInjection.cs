@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Veil.Application.Interfaces;
+
 namespace Veil.Infrastructure;
 
 public static class DependencyInjection
@@ -12,5 +14,7 @@ public static class DependencyInjection
         {
             dbContext.UseInMemoryDatabase("Veil");
         });
+
+        builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<VeilContext>());
     }
 }

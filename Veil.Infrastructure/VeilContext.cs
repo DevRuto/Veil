@@ -3,20 +3,24 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+using Veil.Application.Interfaces;
 using Veil.Core.Common;
 using Veil.Core.Entities;
 using Veil.Infrastructure.EntityConfigurations;
 
 namespace Veil.Infrastructure;
 
-public class VeilContext : DbContext
+public class VeilContext : DbContext, IApplicationDbContext
 {
     public DbSet<Message> Messages { get; set; }
 
     private readonly IMediator _mediator;
     private readonly ILogger<VeilContext> _logger;
 
-    public VeilContext(IMediator mediator, ILogger<VeilContext> logger)
+    public VeilContext(
+        DbContextOptions<VeilContext> options,
+        IMediator mediator,
+        ILogger<VeilContext> logger) : base(options)
     {
         _mediator = mediator;
         _logger = logger;
@@ -42,6 +46,8 @@ public class VeilContext : DbContext
             domainEntity.ClearDomainEvents();
             foreach (var domainEvent in events)
                 await _mediator.Publish(domainEvent).ConfigureAwait(false);
+            
+            _logger.LogInformation("Domain events dispatched");
         }
 
         return result;
