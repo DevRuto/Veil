@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using Veil.Application.Message.Commands;
+using Veil.Application.Message.Queries;
 
 namespace Veil.API.Controllers;
 
@@ -18,14 +19,20 @@ public class MessageController : ControllerBase
     }
 
     [HttpGet("test")]
-    public async Task<int> Test()
+    public async Task<Guid> Test([FromQuery] string text)
     {
-        Console.WriteLine("hello");
         var command = new CreateMessageCommand
         {
-            Text = "Hello there"
+            Text = text
         };
 
         return await _mediator.Send(command);
+    }
+
+    [HttpGet("all")]
+    public async Task<object> All()
+    {
+        var query = new GetMessagesQuery();
+        return await _mediator.Send(query);
     }
 }
