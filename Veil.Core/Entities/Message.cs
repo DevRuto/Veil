@@ -5,9 +5,9 @@ namespace Veil.Core.Entities;
 
 public class Message : BaseEntity<Guid>
 {
-    public required string Text { get; set; }
+    public string? Text { get; set; }
 
-    public static Message Create(string text)
+    public static Message Create(string? text)
     {
         var message = new Message
         {

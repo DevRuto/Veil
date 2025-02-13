@@ -26,6 +26,6 @@ public class GetMessagesQueryHandler : IRequestHandler<GetMessagesQuery, Core.En
     public async Task<Core.Entities.Message[]> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("GetMessages Query");
-        return await _context.Messages.ToArrayAsync();
+        return await _context.Messages.ToArrayAsync(cancellationToken: cancellationToken);
     }
 }

@@ -25,7 +25,7 @@ public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand,
     public async Task<Guid> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Called CreateMessageCommandHandler");
-        var entity = await _context.Messages.AddAsync(Core.Entities.Message.Create(request.Text));
+        var entity = await _context.Messages.AddAsync(Core.Entities.Message.Create(request.Text), cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
         return entity.Entity.Id;
     }
