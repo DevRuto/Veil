@@ -1,31 +1,34 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
 using MediatR;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 using Veil.Application.Interfaces;
 
 namespace Veil.Application.Message.Queries;
 
-public record GetMessagesQuery : IRequest<Core.Entities.Message[]>
+public record GetMessagesQuery : IRequest<MessageDto[]>
 {
     
 }
 
-public class GetMessagesQueryHandler : IRequestHandler<GetMessagesQuery, Core.Entities.Message[]>
+public class GetMessagesQueryHandler : IRequestHandler<GetMessagesQuery, MessageDto[]>
 {
     private readonly IApplicationDbContext _context;
-    private readonly ILogger<GetMessagesQueryHandler> _logger;
+    private readonly IMapper _mapper;
 
-    public GetMessagesQueryHandler(IApplicationDbContext context, ILogger<GetMessagesQueryHandler> logger)
+    public GetMessagesQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
-        _logger = logger;
+        _mapper = mapper;
     }
 
-    public async Task<Core.Entities.Message[]> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
+    public async Task<MessageDto[]> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("GetMessages Query");
-        return await _context.Messages.ToArrayAsync(cancellationToken: cancellationToken);
+        return await _context.Messages
+            .ProjectTo<MessageDto>(_mapper.ConfigurationProvider)
+            .ToArrayAsync(cancellationToken: cancellationToken);
     }
 }
