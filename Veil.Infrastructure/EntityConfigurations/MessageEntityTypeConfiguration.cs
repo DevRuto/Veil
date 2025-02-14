@@ -5,11 +5,11 @@ using Veil.Core.Entities;
 
 namespace Veil.Infrastructure.EntityConfigurations;
 
-public class MessageEntityTypeConfiguration : IEntityTypeConfiguration<Message>
+public class MessageEntityTypeConfiguration : IEntityTypeConfiguration<BaseMessage>
 {
-    public void Configure(EntityTypeBuilder<Message> builder)
+    public void Configure(EntityTypeBuilder<BaseMessage> builder)
     {
-        builder.ToTable("Message");
+        builder.ToTable("Messages");
 
         builder.HasKey(m => m.Id);
         builder.Ignore(m => m.DomainEvents);

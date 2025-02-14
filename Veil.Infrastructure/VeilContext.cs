@@ -12,7 +12,7 @@ namespace Veil.Infrastructure;
 
 public class VeilContext : DbContext, IApplicationDbContext
 {
-    public DbSet<Message> Messages { get; set; }
+    public DbSet<BaseMessage> Messages { get; set; }
 
     private readonly IMediator _mediator;
     private readonly ILogger<VeilContext> _logger;

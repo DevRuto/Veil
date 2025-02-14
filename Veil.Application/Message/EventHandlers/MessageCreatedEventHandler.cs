@@ -14,7 +14,7 @@ public class MessageCreatedEventHandler : INotificationHandler<MessageCreatedEve
 
     public Task Handle(MessageCreatedEvent notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Message created, {Id}, {Text}", notification.Message.Id, notification.Message.Text);
+        _logger.LogInformation("Message created, {Id}, {Text}", notification.Message.Id, notification.Message.Value);
 
         return Task.CompletedTask;
     }

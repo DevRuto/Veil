@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 using Veil.Application.Interfaces;
+using Veil.Core.Entities;
 
 namespace Veil.Application.Message.Commands;
 
@@ -25,7 +26,8 @@ public class CreateMessageCommandHandler : IRequestHandler<CreateMessageCommand,
     public async Task<Guid> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Called CreateMessageCommandHandler");
-        var entity = await _context.Messages.AddAsync(Core.Entities.Message.Create(request.Text), cancellationToken);
+        var msg = TextMessage.Create(request.Text) as BaseMessage;
+        var entity = await _context.Messages.AddAsync(msg, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
         return entity.Entity.Id;
     }

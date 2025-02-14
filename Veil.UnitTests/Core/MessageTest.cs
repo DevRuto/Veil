@@ -9,9 +9,9 @@ public class MessageTest
     [Fact]
     public void ShouldHaveNewGuid()
     {
-        var message = Message.Create("test message");
+        var message = TextMessage.Create("test message");
         
-        message.Text.ShouldBe("test message");
+        message.Value.ShouldBe("test message");
         message.Id.ShouldNotBe(Guid.Empty);
     }
 }

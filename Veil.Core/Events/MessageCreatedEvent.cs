@@ -5,7 +5,7 @@ namespace Veil.Core.Events;
 
 public class MessageCreatedEvent : IDomainEvent
 {
-    public Message Message { get; set; }
+    public BaseMessage Message { get; set; }
 
-    public MessageCreatedEvent(Message message) => Message = message;
+    public MessageCreatedEvent(BaseMessage message) => Message = message;
 }
