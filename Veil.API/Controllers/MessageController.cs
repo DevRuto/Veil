@@ -9,15 +9,8 @@ namespace Veil.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MessageController : ControllerBase
+public class MessageController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public MessageController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpGet("test")]
     public async Task<Guid> Test([FromQuery] string text)
     {
@@ -26,13 +19,13 @@ public class MessageController : ControllerBase
             Text = text
         };
 
-        return await _mediator.Send(command);
+        return await mediator.Send(command);
     }
 
     [HttpGet("all")]
     public async Task<object> All()
     {
         var query = new GetMessagesQuery();
-        return await _mediator.Send(query);
+        return await mediator.Send(query);
     }
 }

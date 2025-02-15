@@ -10,21 +10,12 @@ using Veil.Infrastructure.EntityConfigurations;
 
 namespace Veil.Infrastructure;
 
-public class VeilContext : DbContext, IApplicationDbContext
+public class VeilContext(
+    DbContextOptions<VeilContext> options,
+    IMediator mediator,
+    ILogger<VeilContext> logger) : DbContext(options), IApplicationDbContext
 {
     public DbSet<BaseMessage> Messages { get; set; }
-
-    private readonly IMediator _mediator;
-    private readonly ILogger<VeilContext> _logger;
-
-    public VeilContext(
-        DbContextOptions<VeilContext> options,
-        IMediator mediator,
-        ILogger<VeilContext> logger) : base(options)
-    {
-        _mediator = mediator;
-        _logger = logger;
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,9 +36,9 @@ public class VeilContext : DbContext, IApplicationDbContext
             var events = domainEntity.DomainEvents.ToArray();
             domainEntity.ClearDomainEvents();
             foreach (var domainEvent in events)
-                await _mediator.Publish(domainEvent).ConfigureAwait(false);
+                await mediator.Publish(domainEvent).ConfigureAwait(false);
             
-            _logger.LogInformation("Domain events dispatched");
+            logger.LogInformation("Domain events dispatched");
         }
 
         return result;
