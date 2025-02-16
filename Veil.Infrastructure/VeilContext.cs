@@ -28,7 +28,7 @@ public class VeilContext(
 
         var domainEntities = ChangeTracker.Entries<HasDomainEvents>()
             .Select(e => e.Entity)        
-            .Where(e => e.DomainEvents.Any())
+            .Where(e => e.DomainEvents.Count != 0)
             .ToArray();
 
         foreach (var domainEntity in domainEntities)
@@ -36,7 +36,7 @@ public class VeilContext(
             var events = domainEntity.DomainEvents.ToArray();
             domainEntity.ClearDomainEvents();
             foreach (var domainEvent in events)
-                await mediator.Publish(domainEvent).ConfigureAwait(false);
+                await mediator.Publish(domainEvent, cancellationToken).ConfigureAwait(false);
             
             logger.LogInformation("Domain events dispatched");
         }
