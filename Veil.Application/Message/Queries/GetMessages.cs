@@ -19,6 +19,7 @@ public class GetMessagesQueryHandler(IApplicationDbContext context, IMapper mapp
     public async Task<MessageDto[]> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
     {
         return await context.Messages
+            .OrderByDescending(msg => msg.Created)
             .ProjectTo<MessageDto>(mapper.ConfigurationProvider)
             .ToArrayAsync(cancellationToken: cancellationToken);
     }
