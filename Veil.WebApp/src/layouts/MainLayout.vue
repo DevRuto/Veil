@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 const drawer = ref(true)
 </script>
 
@@ -16,13 +16,11 @@ const drawer = ref(true)
     <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500" bordered>
       <q-scroll-area class="fit">
         <q-list>
-          <q-item clickable :active="true" v-ripple>
+          <q-item to="/" clickable :active="true" v-ripple>
             <q-item-section avatar>
               <q-icon name="inbox" />
             </q-item-section>
-            <q-item-section>
-              <RouterLink to="/">Home</RouterLink>
-            </q-item-section>
+            <q-item-section> Home </q-item-section>
           </q-item>
           <q-separator />
         </q-list>
@@ -30,9 +28,7 @@ const drawer = ref(true)
     </q-drawer>
 
     <q-page-container>
-      <q-page padding>
-        <RouterView />
-      </q-page>
+      <RouterView />
     </q-page-container>
   </q-layout>
 </template>

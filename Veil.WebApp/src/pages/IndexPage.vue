@@ -1,5 +1,5 @@
 <template>
-  <q-page class="items-center justify-evenly">
+  <q-page padding class="items-center justify-evenly">
     <veil-message
       v-for="message of messages"
       :key="message.id"
