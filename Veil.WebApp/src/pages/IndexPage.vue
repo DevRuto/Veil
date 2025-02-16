@@ -1,43 +1,40 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="items-center justify-evenly">
+    <veil-message
+      v-for="message of messages"
+      :key="message.id"
+      :id="message.id"
+      :from="message.from"
+      :text="message.text"
+    ></veil-message>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
+import { ref } from 'vue'
+import type { Message } from 'components/models'
+import VeilMessage from 'components/VeilMessage.vue'
 
-const todos = ref<Todo[]>([
+const messages = ref<Message[]>([
   {
     id: 1,
-    content: 'ct1'
+    from: 'Ruto',
+    text: 'hello there',
   },
   {
     id: 2,
-    content: 'ct2'
+    from: 'Ruto',
+    text: 'test message',
   },
   {
     id: 3,
-    content: 'ct3'
+    from: 'Dog',
+    text: 'Woof',
   },
   {
     id: 4,
-    content: 'ct4'
+    from: 'Cat',
+    text: 'Meow',
   },
-  {
-    id: 5,
-    content: 'ct5'
-  }
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200
-});
+])
 </script>
