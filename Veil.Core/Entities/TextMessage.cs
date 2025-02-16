@@ -6,7 +6,7 @@ namespace Veil.Core.Entities;
 
 public class TextMessage : BaseMessage
 {
-    public string Text => Encoding.UTF8.GetString(Value ?? Array.Empty<byte>());
+    public string Text => Encoding.UTF8.GetString(Value ?? []);
 
     public static TextMessage Create(string? text)
     {
