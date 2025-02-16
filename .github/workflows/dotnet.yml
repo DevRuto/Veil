@@ -10,7 +10,7 @@ on:
       - '**.md'
       - .gitignore
       - ./vscode/**/*
-      - ./Veil.WebApp/**/*
+      - ./Veil.WebApp/**
 
 jobs:
   build:
