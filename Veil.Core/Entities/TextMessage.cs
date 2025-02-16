@@ -22,4 +22,16 @@ public class TextMessage : BaseMessage
 
         return message;
     }
+
+    public static TextMessage Create(BaseMessage baseMessage) 
+        => new()
+        { 
+            Id = baseMessage.Id, 
+            Value = baseMessage.Value, 
+            DataType = baseMessage.DataType,
+            Created = baseMessage.Created,
+            CreatedBy = baseMessage.CreatedBy,
+            Updated = baseMessage.Updated,
+            UpdatedBy = baseMessage.UpdatedBy,
+        };
 }

@@ -17,10 +17,21 @@ public class MessageDto
     {
         public Mapper()
         {
+            CreateMap<BaseMessage, TextMessage>();
             CreateMap<BaseMessage, MessageDto>()
                 .ForMember(msg => msg.Author, m => m.MapFrom(src => src.CreatedBy))
                 .ForMember(msg => msg.MessageType, m => m.MapFrom(src => src.DataType))
-                .ForMember(msg => msg.Text, m => m.MapFrom(src => src.Value));
+                .ForMember(msg => msg.Text, m => m.MapFrom(src => GetCorrespondingText(src)));
+        }
+
+        private static string GetCorrespondingText(BaseMessage msg)
+        {
+            Console.WriteLine(msg.DataType);
+            if (msg.DataType == DataType.Text)
+                return TextMessage.Create(msg).Text;
+            else if (msg.DataType == DataType.Image)
+                return "Image type not implemented";
+            return "N/A";
         }
     }
 }
