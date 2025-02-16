@@ -6,7 +6,7 @@ namespace Veil.Core.Entities;
 
 public class BaseMessage : BaseEntity<Guid>
 {
-    public string? Value { get; set; }
+    public byte[]? Value { get; set; }
     public DataType DataType { get; set; }
     public DateTimeOffset Created { get; set; } = DateTimeOffset.Now;
     public Guid CreatedBy { get; set; }

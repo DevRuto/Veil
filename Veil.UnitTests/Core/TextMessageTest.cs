@@ -1,3 +1,5 @@
+using System.Text;
+
 using Shouldly;
 
 using Veil.Core.Entities;
@@ -10,10 +12,12 @@ public class TextMessageTest
     [Fact]
     public void ShouldHaveNewGuid()
     {
-        var message = TextMessage.Create("test message");
+        var testMessage = "test message";
+        var message = TextMessage.Create(testMessage);
         
         message.Id.ShouldNotBe(Guid.Empty);
-        message.Value.ShouldBe("test message");
+        message.Value.ShouldBe(Encoding.UTF8.GetBytes(testMessage));
+        message.Text.ShouldBe(testMessage);
         message.DataType.ShouldBe(DataType.Text);
     }
 }
