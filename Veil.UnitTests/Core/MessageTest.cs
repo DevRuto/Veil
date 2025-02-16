@@ -7,17 +7,16 @@ using Veil.Core.Enums;
 
 namespace Veil.UnitTests.Core;
 
-public class TextMessageTest
+public class MessageTest
 {
     [Fact]
     public void ShouldHaveNewGuid()
     {
         var testMessage = "test message";
-        var message = TextMessage.Create(testMessage);
+        var message = new BaseMessage(testMessage);
         
         message.Id.ShouldNotBe(Guid.Empty);
         message.Value.ShouldBe(Encoding.UTF8.GetBytes(testMessage));
-        message.Text.ShouldBe(testMessage);
         message.DataType.ShouldBe(DataType.Text);
     }
 }

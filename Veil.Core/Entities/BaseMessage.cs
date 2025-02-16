@@ -1,3 +1,5 @@
+using System.Text;
+
 using Veil.Core.Common;
 using Veil.Core.Enums;
 using Veil.Core.Events;
@@ -16,5 +18,19 @@ public class BaseMessage : BaseEntity<Guid>
     public BaseMessage()
     {
         AddDomainEvent(new MessageCreatedEvent(this));
+    }
+
+    public BaseMessage(string text) : this()
+    {
+        Id = Guid.NewGuid();
+        Value = Encoding.UTF8.GetBytes(text);
+        DataType = DataType.Text;
+    }
+
+    public BaseMessage(byte[] value, DataType dataType = DataType.Image) : this()
+    {
+        Id = Guid.NewGuid();
+        Value = value;
+        DataType = dataType;
     }
 }

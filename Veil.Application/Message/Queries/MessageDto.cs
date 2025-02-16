@@ -1,3 +1,5 @@
+using System.Text;
+
 using AutoMapper;
 
 using Veil.Core.Entities;
@@ -17,7 +19,6 @@ public class MessageDto
     {
         public Mapper()
         {
-            CreateMap<BaseMessage, TextMessage>();
             CreateMap<BaseMessage, MessageDto>()
                 .ForMember(msg => msg.Author, m => m.MapFrom(src => src.CreatedBy))
                 .ForMember(msg => msg.MessageType, m => m.MapFrom(src => src.DataType))
@@ -26,9 +27,8 @@ public class MessageDto
 
         private static string GetCorrespondingText(BaseMessage msg)
         {
-            Console.WriteLine(msg.DataType);
-            if (msg.DataType == DataType.Text)
-                return TextMessage.Create(msg).Text;
+            if (msg.DataType == DataType.Text && msg.Value != null)
+                return Encoding.UTF8.GetString(msg.Value);
             else if (msg.DataType == DataType.Image)
                 return "Image type not implemented";
             return "N/A";

@@ -12,7 +12,7 @@ namespace Veil.API.Controllers;
 public class MessageController(IMediator mediator) : ControllerBase
 {
     [HttpGet("test")]
-    public async Task<Guid> Test([FromQuery] string text)
+    public async Task<Guid?> Test([FromQuery] string text)
     {
         var command = new CreateMessageCommand
         {
