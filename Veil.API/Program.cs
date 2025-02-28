@@ -17,6 +17,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    using var scope = app.Services.CreateScope();
+    using var context = scope.ServiceProvider.GetRequiredService<VeilContext>();
+    context.Database.EnsureCreated();
 }
 
 app.UseAuthorization();
