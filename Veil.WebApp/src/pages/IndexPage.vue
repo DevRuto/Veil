@@ -11,30 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import type { Message } from 'components/models'
 import VeilMessage from 'components/VeilMessage.vue'
+import { getMessages } from 'src/services/api/messages'
 
-const messages = ref<Message[]>([
-  {
-    id: 1,
-    from: 'Ruto',
-    text: 'hello there',
-  },
-  {
-    id: 2,
-    from: 'Ruto',
-    text: 'test message',
-  },
-  {
-    id: 3,
-    from: 'Dog',
-    text: 'Woof',
-  },
-  {
-    id: 4,
-    from: 'Cat',
-    text: 'Meow',
-  },
-])
+const messages = ref<Message[]>()
+
+onMounted(async () => {
+  messages.value = await getMessages()
+})
 </script>
